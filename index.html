@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chúc Mừng 20/10 — Thiệp động</title>
+  <style>
+    :root{
+      --bg1:#ffecd2;
+      --bg2:#fcb69f;
+      --accent:#ff4d6d;
+      --accent2:#ff9aa2;
+      --gold:#ffd166;
+      --glass: rgba(255,255,255,0.12);
+      --card-w: 920px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;line-height:1}
+
+    body{
+      background: radial-gradient(1200px 600px at 10% 20%, rgba(255,255,255,0.08), transparent), linear-gradient(120deg,var(--bg1), var(--bg2));
+      overflow:hidden;
+      display:flex;align-items:center;justify-content:center;padding:40px;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* Card */
+    .card{
+      width:min(95%, var(--card-w));
+      height:620px;
+      border-radius:28px;
+      padding:28px;
+      position:relative;
+      overflow:hidden;
+      backdrop-filter: blur(6px) saturate(120%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      box-shadow: 0 20px 50px rgba(13,20,30,0.28), inset 0 1px 0 rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      display:flex;
+      gap:20px;
+    }
+
+    /* Left: message */
+    .left{
+      flex:1.2;
+      padding:28px;
+      display:flex;flex-direction:column;justify-content:center;position:relative;
+    }
+
+    h1{
+      margin:0 0 10px 0;
+      font-size:48px;
+      letter-spacing: -1px;
+      line-height:1.02;
+      color:white;
+      text-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      transform-origin:center left;
+      animation: floatTitle 4s ease-in-out infinite;
+    }
+
+    @keyframes floatTitle{
+      0%,100%{transform: translateY(0)}
+      50%{transform: translateY(-8px)}
+    }
+
+    h1 .glow{
+      background: linear-gradient(90deg,var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    p.lead{
+      color: rgba(255,255,255,0.92);
+      margin:12px 0 24px 0;
+      font-size:18px;
+      max-width:640px;
+    }
+
+    .cta{
+      display:flex;gap:12px;align-items:center;
+    }
+
+    .btn{
+      padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:600;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .btn:hover{transform: translateY(-4px)}
+
+    .btn-primary{
+      background: linear-gradient(90deg,var(--accent), var(--accent2));
+      color:white;
+    }
+
+    .btn-ghost{
+      background: transparent; color:white; border:1px solid rgba(255,255,255,0.12);
+    }
+
+    /* Right: illustration */
+    .right{flex:0.9;display:flex;align-items:center;justify-content:center;position:relative}
+
+    .flower-stage{
+      width:100%;height:100%;display:flex;align-items:center;justify-content:center;pointer-events:none}
+
+    /* Floating petals/hearts */
+    .particle{
+      position:absolute;left:50%;top:50%;width:18px;height:18px;opacity:0;transform:translate(-50%,-50%) scale(0.6);
+      will-change: transform, opacity;
+    }
+
+    .petal{width:18px;height:18px;background:linear-gradient(180deg,#fff4f6,#ffd0d8);border-radius:50% 50% 50% 50%/60% 60% 40% 40%; transform:rotate(45deg)}
+    .heart{position:relative;width:18px;height:16px}
+    .heart:before,.heart:after{content:"";position:absolute;left:9px;top:0;width:9px;height:14px;background:linear-gradient(180deg,var(--accent),var(--accent2));border-radius:50%;transform:translateX(-50%)}
+    .heart:before{left:4.5px}
+    .heart:after{left:13.5px}
+
+    @keyframes flyUp{
+      0%{opacity:0; transform: translate(var(--sx,0),var(--sy,0)) scale(0.6) rotate(var(--rot,0deg))}
+      10%{opacity:1}
+      100%{opacity:0; transform: translate(var(--tx, -200px), var(--ty, -520px)) scale(1.1) rotate(calc(var(--rot,0deg) + 540deg))}
+    }
+
+    /* Confetti canvas */
+    .confetti-canvas{position:absolute;inset:0;pointer-events:none}
+
+    /* center ribbon */
+    .ribbon{
+      position:absolute;left:50%;top:24%;transform:translateX(-50%);width:480px;height:120px;display:flex;align-items:center;justify-content:center;pointer-events:none;
+    }
+    .ribbon .strip{height:50px;width:100%;border-radius:28px;background:linear-gradient(90deg, rgba(255,255,255,0.18), rgba(255,255,255,0.02));box-shadow:0 8px 30px rgba(0,0,0,0.18);filter: blur(.2px)}
+
+    /* small shimmer stars */
+    .spark{
+      position:absolute;width:8px;height:8px;border-radius:50%;background:linear-gradient(90deg,var(--gold),#fff);opacity:0.95;box-shadow:0 6px 20px rgba(255,210,100,0.22);
+      transform-origin:center; animation: shimmer 2.6s infinite ease-in-out;
+    }
+    @keyframes shimmer{0%{transform:scale(.6) rotate(0)}50%{transform:scale(1.2) rotate(45deg)}100%{transform:scale(.6) rotate(0)}}
+
+    /* bottom message card */
+    .note{
+      position:absolute;left:28px;right:28px;bottom:22px;padding:14px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.04);
+      display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.9);font-weight:600
+    }
+
+    /* responsive */
+    @media (max-width:880px){
+      .card{flex-direction:column;height:auto;padding:20px}
+      h1{font-size:36px}
+      .right{order:2;height:300px}
+      .left{order:1;padding:12px}
+    }
+
+    /* small credit */
+    .credit{position:absolute;right:12px;bottom:8px;color:rgba(255,255,255,0.32);font-size:12px}
+
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div class="left">
+      <h1>Chúc Mừng <span class="glow">20/10</span><br/>Ngập Tràn Yêu Thương</h1>
+      <p class="lead">Gửi bạn Thu Hương, người con gái xinh đẹp nhất đời này có 20/10 vui vẻ nha !!! </p>
+
+      <div class="cta">
+        <button class="btn btn-primary" id="btnConf">Bắn confetti</button>
+        <button class="btn btn-ghost" id="btnHearts">Mưa trái tim</button>
+      </div>
+    </div>
+    <div class="right">
+      <div class="flower-stage" aria-hidden="true" id="stage">
+        <!-- decorative SVG flower -->
+        <svg width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="g1" cx="50%" cy="40%" r="60%">
+              <stop offset="0%" stop-color="#fff6fa"/>
+              <stop offset="60%" stop-color="#ffd6e0"/>
+              <stop offset="100%" stop-color="#ff9aa2"/>
+            </radialGradient>
+          </defs>
+          <g transform="translate(160,160)">
+            <g class="petal-group" style="transform-origin:160px 160px;">
+              <!-- 8 petals -->
+              <g transform="rotate(0)"><ellipse rx="18" ry="48" fill="url(#g1)" transform="translate(80,0) rotate(30)" opacity="0.95"/></g>
+              <g transform="rotate(45)"><ellipse rx="18" ry="48" fill="url(#g1)" transform="translate(80,0) rotate(30)" opacity="0.92"/></g>
+              <g transform="rotate(90)"><ellipse rx="18" ry="48" fill="url(#g1)" transform="translate(80,0) rotate(30)" opacity="0.9"/></g>
+              <g transform="rotate(135)"><ellipse rx="18" ry="48" fill="url(#g1)" transform="translate(80,0) rotate(30)" opacity="0.88"/></g>
+              <g transform="rotate(180)"><ellipse rx="18" ry="48" fill="url(#g1)" transform="translate(80,0) rotate(30)" opacity="0.86"/></g>
+              <g transform="rotate(225)"><ellipse rx="18" ry="48" fill="url(#g1)" transform="translate(80,0) rotate(30)" opacity="0.84"/></g>
+              <g transform="rotate(270)"><ellipse rx="18" ry="48" fill="url(#g1)" transform="translate(80,0) rotate(30)" opacity="0.82"/></g>
+              <g transform="rotate(315)"><ellipse rx="18" ry="48" fill="url(#g1)" transform="translate(80,0) rotate(30)" opacity="0.8"/></g>
+            </g>
+            <circle r="38" fill="white" opacity="0.95"/>
+            <circle r="28" fill="url(#g1)" opacity="0.98" />
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <canvas class="confetti-canvas" id="confetti"></canvas>
+
+    <div class="note">💐 Gửi lời yêu thương — hãy bấm nút để tạo bất ngờ!</div>
+    <div class="credit">Thiệp 20/10 — Tự tạo bởi bạn</div>
+  </div>
+
+  <script>
+    // Simple confetti (canvas)
+    const confettiCanvas = document.getElementById('confetti');
+    const card = document.getElementById('card');
+    confettiCanvas.width = card.clientWidth;
+    confettiCanvas.height = card.clientHeight;
+    confettiCanvas.style.width = confettiCanvas.width + 'px';
+    confettiCanvas.style.height = confettiCanvas.height + 'px';
+    confettiCanvas.style.left = card.offsetLeft + 'px';
+    confettiCanvas.style.top = card.offsetTop + 'px';
+
+    const ctx = confettiCanvas.getContext('2d');
+    let confettiPieces = [];
+    const colors = ['#ff6b81','#ff9aa2','#ffd6a5','#ffd166','#b3f0c5','#cde7ff'];
+
+    function rand(min,max){return Math.random()*(max-min)+min}
+    function makeConfetti(x,y){
+      const p = {
+        x:x, y:y,
+        vx:rand(-6,6), vy:rand(-12,-4),
+        size: rand(6,12),
+        color: colors[Math.floor(Math.random()*colors.length)],
+        rot: rand(0,360), vr: rand(-8,8), life: rand(60,110)
+      };
+      confettiPieces.push(p);
+    }
+
+    function renderConfetti(){
+      ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+      for(let i=confettiPieces.length-1;i>=0;i--){
+        const p = confettiPieces[i];
+        p.vy += 0.4; p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.life--;
+        ctx.save();
+        ctx.translate(p.x,p.y); ctx.rotate(p.rot * Math.PI/180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size*0.6);
+        ctx.restore();
+        if(p.life<=0 || p.y>confettiCanvas.height+30) confettiPieces.splice(i,1);
+      }
+      requestId = requestAnimationFrame(renderConfetti);
+    }
+
+    let requestId = null;
+    renderConfetti();
+
+    // Hearts/petals
+    const stage = document.getElementById('stage');
+    let particles = [];
+    function spawnParticle(kind){
+      const el = document.createElement('div');
+      el.className = 'particle';
+      const startX = rand(40,80); // percent within right area
+      const startY = rand(60,95);
+      const tx = rand(-120,120);
+      const ty = rand(-260,-420);
+      const rot = rand(-30,30);
+      el.style.left = startX + '%';
+      el.style.top = startY + '%';
+      el.style.setProperty('--tx', tx + 'px');
+      el.style.setProperty('--ty', ty + 'px');
+      el.style.setProperty('--sx', '0px');
+      el.style.setProperty('--sy', '0px');
+      el.style.setProperty('--rot', rot+'deg');
+      el.style.animation = `flyUp ${rand(2.6,4.4)}s cubic-bezier(.2,.8,.2,1) forwards`;
+
+      if(kind==='heart'){
+        const h = document.createElement('div'); h.className='heart'; el.appendChild(h);
+      } else {
+        const p = document.createElement('div'); p.className='petal'; el.appendChild(p);
+      }
+      stage.appendChild(el);
+      setTimeout(()=> el.remove(), 4800);
+    }
+
+    let heartsInterval = null;
+    document.getElementById('btnHearts').addEventListener('click', ()=>{
+      if(heartsInterval) return; // already running
+      heartsInterval = setInterval(()=>{
+        for(let i=0;i<3;i++) spawnParticle('heart');
+      }, 300);
+      setTimeout(()=>{ clearInterval(heartsInterval); heartsInterval=null; }, 8000);
+    });
+
+    // Confetti trigger
+    document.getElementById('btnConf').addEventListener('click', (e)=>{
+      const rect = card.getBoundingClientRect();
+      const cx = rect.width/2; const cy = rect.height/3;
+      for(let i=0;i<120;i++) makeConfetti(rand(cx-60,cx+60), rand(cy-40, cy+40));
+    });
+
+    // Stop
+    document.getElementById('btnStop').addEventListener('click', ()=>{
+      confettiPieces = [];
+      ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+      // remove particles
+      document.querySelectorAll('.particle').forEach(n => n.remove());
+      if(heartsInterval){ clearInterval(heartsInterval); heartsInterval=null; }
+    });
+
+    // resize canvas on window resize
+    window.addEventListener('resize', ()=>{
+      confettiCanvas.width = card.clientWidth;
+      confettiCanvas.height = card.clientHeight;
+      confettiCanvas.style.width = confettiCanvas.width + 'px';
+      confettiCanvas.style.height = confettiCanvas.height + 'px';
+      confettiCanvas.style.left = card.offsetLeft + 'px';
+      confettiCanvas.style.top = card.offsetTop + 'px';
+    });
+
+    // subtle petal float from left side
+    (function makeSoftPetals(){
+      setInterval(()=>{
+        const el = document.createElement('div'); el.className='particle';
+        el.style.left = rand(4,24) + '%'; el.style.top = rand(60,95) + '%';
+        el.style.setProperty('--tx', rand(-20,160) + 'px');
+        el.style.setProperty('--ty', rand(-260,-120) + 'px');
+        el.style.setProperty('--rot', rand(-40,40)+'deg');
+        el.style.animation = `flyUp ${rand(6,12)}s linear forwards`;
+        const p = document.createElement('div'); p.className='petal'; el.appendChild(p);
+        stage.appendChild(el);
+        setTimeout(()=> el.remove(), 13000);
+      }, 900);
+    })();
+
+    // small decorative sparks
+    const cardRect = card.getBoundingClientRect();
+    for(let i=0;i<8;i++){
+      const s = document.createElement('div'); s.className='spark';
+      s.style.left = rand(10,94) + '%'; s.style.top = rand(6,86) + '%'; s.style.animationDelay = (i*0.2)+'s';
+      card.appendChild(s);
+    }
+
+  </script>
+</body>
+</html>
